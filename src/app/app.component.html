@@ -1,24 +1,31 @@
-<div class="container-search">
+<div class="container-search" [formGroup]="searchForm">
   <div class="search">
-    <input type="text" class="search-input" placeholder="Search City">
-    <button class="search-button">Search</button>
+    <input type="text" class="search-input" placeholder="Search City" formControlName="city">
+    <button class="search-button" (click)="searchWeather()">Search</button>
 
   </div>
 </div>
 
-<div class="container">
+<div class="container" >
 
   <div class="up">
-    <img src="/assets/coldnew.jpg">
+    <ng-container *ngIf="isDayTime; else night">
+      <img src="/assets/hot.png">
+    </ng-container>
+    <ng-template #night>
+      <img src="/assets/coldnew.jpg">
+    </ng-template>
     <div class="weather-data">
-      <div class="location">Wellington</div>
-      <div class="temperature">{{ 15.08 | number: '1.0-0'}}°C</div>
+      <div class="location">{{weather.location.name}}</div>
+      <div class="temperature">{{weather.current.temp_c}}°C</div>
+
+      <div class="condition-text">{{weather.current.condition.text}}
+      </div>
     </div>
 
 
-
-
   </div>
+
   <div class="down">
     <div class="more-info-label">More Information</div>
 
@@ -29,7 +36,7 @@
           <span>uv</span>
         </div>
         <div class="info-block-value">
-          10°C
+          {{weather.current.uv}}
 
         </div>
       </div>
@@ -40,7 +47,7 @@
           <span>feels like</span>
         </div>
         <div class="info-block-value">
-          20°C
+          {{weather.current.feelslike_c}}°C
         </div>
       </div>
 
@@ -51,7 +58,7 @@
           <span>humidity</span>
         </div>
         <div class="info-block-value">
-          77%
+          {{weather.current.humidity}}%
         </div>
       </div>
 
@@ -61,7 +68,7 @@
           <span>wind</span>
         </div>
         <div class="info-block-value">
-          11 km/h
+          {{weather.current.wind_kph}} km/h
         </div>
       </div>
 

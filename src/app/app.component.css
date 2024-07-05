@@ -5,6 +5,7 @@
   margin-top:50px;
 
 }
+
 .search-input{
   padding:10px;
   border: 1px solid;
@@ -62,12 +63,18 @@
 
 
 
+
 }
 .temperature{
   color: white;
   text-align: center;
   font-size:4em;
   font-weight: 900;
+}
+.condition-text{
+  color: white;
+  margin-top:20px;
+  font-size:1.2em;
 }
 .message{
   color:white;
